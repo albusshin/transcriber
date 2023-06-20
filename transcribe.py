@@ -46,9 +46,8 @@ if __name__ == "__main__":
     with tempfile.TemporaryDirectory() as temp_dir:
         logging.debug(f"Changing into temporary directory {temp_dir}")
 
-        input_file_preparer = InputFilePreparer(file_path=args.input_aac_file)
-
         os.chdir(temp_dir)
+        input_file_preparer = InputFilePreparer(file_path=args.input_aac_file)
 
         pipelines = Pipelines(args.hugging_face_access_token)
 
