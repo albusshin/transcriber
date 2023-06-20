@@ -45,7 +45,7 @@ class InputFilePreparer:
             self.get_prepared_file_path(),
             format="wav",
         )
-        logging.debug("File prepared to:", self.get_prepared_file_path())
+        logging.debug(f"File prepared to: {self.get_prepared_file_path()}")
 
     def export_mini_audio_files_from_groups(self, diarized_groups):
         logging.debug(f"Exporting mini audio files...")
