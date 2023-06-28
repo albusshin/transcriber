@@ -13,7 +13,7 @@ class DiarizationPipeline:
     def load_pretrained_diarization_model(self):
         from pyannote.audio import Pipeline
 
-        logging.debug("Loading pretrained diarization module")
+        logging.info("Loading pretrained diarization module")
         self.pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization@2.1",
             use_auth_token=self.hugging_face_access_token,
@@ -26,7 +26,7 @@ class DiarizationPipeline:
 
     @timer_decorator
     def _diarize(self, file_path: str):
-        logging.debug(f"Diarizing file: {file_path}")
+        logging.info(f"Diarizing file: {file_path}")
         return self.pipeline({"uri": "blabla", "audio": file_path})
 
     def get_diarized_groups(self, file_path: str):

@@ -16,12 +16,12 @@ class InputFilePreparer:
         base_name = self.get_original_input_file_base_name()
         self.copied_wav_format_file_name = f"{base_name}.wav"
 
-        logging.debug(
+        logging.info(
             f"Creating {self.copied_wav_format_file_name} from {self.file_path}"
         )
         input_aac_file = AudioSegment.from_file(self.file_path, "aac")
         input_aac_file.export(self.copied_wav_format_file_name, format="wav")
-        logging.debug(f"Created {self.copied_wav_format_file_name}")
+        logging.info(f"Created {self.copied_wav_format_file_name}")
 
     def get_prepared_file_name(self):
         return f"prepared-{self.copied_wav_format_file_name}"
@@ -37,7 +37,7 @@ class InputFilePreparer:
         return os.path.basename(self.file_path)
 
     def _prepare_front_padded_file(self):
-        logging.debug(f"Preparing file: {self.file_path}")
+        logging.info(f"Preparing file: {self.file_path}")
 
         AudioSegment.silent(duration=self.front_padding_milliseconds).append(
             AudioSegment.from_wav(self.copied_wav_format_file_name), crossfade=0
@@ -45,10 +45,10 @@ class InputFilePreparer:
             self.get_prepared_file_path(),
             format="wav",
         )
-        logging.debug(f"File prepared to: {self.get_prepared_file_path()}")
+        logging.info(f"File prepared to: {self.get_prepared_file_path()}")
 
     def export_mini_audio_files_from_groups(self, diarized_groups):
-        logging.debug(f"Exporting mini audio files...")
+        logging.info(f"Exporting mini audio files...")
         audio = AudioSegment.from_wav(self.get_prepared_file_path())
         for i, g in enumerate(diarized_groups):
             start = millisec(re.findall("[0-9]+:[0-9]+:[0-9]+\.[0-9]+", string=g[0])[0])
