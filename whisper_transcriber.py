@@ -25,7 +25,7 @@ class WhisperTranscriber:
         total_mini_audio_files = len(diarized_groups)
         for i in range(total_mini_audio_files):
             logging.debug(
-                f"Transcribing audio file\t {i} of {total_mini_audio_files}..."
+                f"Transcribing audio file\t {i + 1} of {total_mini_audio_files}..."
             )
             result = self.model.transcribe(
                 audio=input_file_preparer.get_mini_audio_file_name_for_diarized_group_number(
