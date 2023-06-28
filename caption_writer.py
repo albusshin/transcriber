@@ -2,6 +2,9 @@ from helpers import millisec
 from input_file_preparer import InputFilePreparer
 
 import json
+import os
+import logging
+import re
 
 
 class CaptionWriter:
